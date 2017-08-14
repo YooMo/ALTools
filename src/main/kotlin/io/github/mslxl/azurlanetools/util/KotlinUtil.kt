@@ -64,6 +64,13 @@ inline fun loop(block: () -> Unit){
         block.invoke()
     }
 }
+inline fun loop(times: Int,block: () -> Unit){
+    if(times > 0){
+        for (i in 1..times){
+            block.invoke()
+        }
+    }
 
+}
 fun image(path:String) = ImageIO.read(File(path))
 fun image(path:File) = ImageIO.read(path)

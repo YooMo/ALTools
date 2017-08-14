@@ -29,7 +29,15 @@ fun searchRectInsideImage(screenshot:BufferedImage,image: BufferedImage):Rectang
     }
     return Rectangle(-1, -1, -1, -1)
 }
-
+fun BufferedImage.rotate():BufferedImage{
+    val image = BufferedImage(height,width,type)
+    for (tx in 0..width){
+        for (th in 0..height){
+            image.setRGB(th,tx,getRGB(tx,th))
+        }
+    }
+    return image
+}
 data class Rectangle(
         val x:Int,
         val y:Int,

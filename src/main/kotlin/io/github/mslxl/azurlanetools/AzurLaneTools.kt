@@ -2,7 +2,6 @@ package io.github.mslxl.azurlanetools
 
 import io.github.mslxl.azurlanetools.config.Config
 import io.github.mslxl.azurlanetools.operatioer.Run
-import io.github.mslxl.azurlanetools.operatioer.Setting
 import io.github.mslxl.azurlanetools.util.isFalse
 import io.github.mslxl.azurlanetools.util.isNull
 import io.github.mslxl.azurlanetools.util.tryDoUntilTrue
@@ -42,15 +41,13 @@ object AzurLaneTools {
         tryDoUntilTrue {
             println("Please enter your operation you want:")
             println("\t0. Run")
-            println("\t1. Setting")
-            println("\t3. Exit")
+            println("\t1. Exit")
             print("Your choice:")
             input = Scanner(System.`in`).nextInt()
             !(input<0||input > 2)
         }
         when(input){
             0->Run()
-            1->Setting()
         }
     }
 

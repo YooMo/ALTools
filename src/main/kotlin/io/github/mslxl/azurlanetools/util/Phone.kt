@@ -1,5 +1,6 @@
 package io.github.mslxl.azurlanetools.util
 
+import io.github.mslxl.azurlanetools.config.Config
 import java.awt.Color
 import java.awt.image.BufferedImage
 import java.io.File
@@ -40,7 +41,11 @@ object Phone {
         if (delOnExit){
             file.deleteOnExit()
         }
-        return ImageIO.read(file)
+        var img = ImageIO.read(file)
+        loop(Config.rotate_times){
+            img.rotate()
+        }
+        return img
     }
     fun waitFor(image:BufferedImage,frequency:Long,timeOut:Long){
         var time = System.currentTimeMillis()
