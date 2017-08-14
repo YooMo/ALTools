@@ -1,6 +1,7 @@
 # Created by .ignore support plugin (hsz.mobi)
+*.iml
 /.idea/
 /build/
 /.gradle/
-/testSave/
 /out/
+/screencap/
