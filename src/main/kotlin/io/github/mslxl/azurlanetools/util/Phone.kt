@@ -58,32 +58,7 @@ object Phone {
     }
     fun searchOnScreen(image:BufferedImage):Rectangle{
         val screenshot = screenshot()
-        var rx = -1
-        var ry = -1
-        var rw = -1
-        var rh = -1
-
-        for (x in 0..image.width) x@{
-            for (y in 0..image.height) y@{
-                val color = image.getRGB(x,y)
-                for (sx in 0..screenshot.width) sx@{
-                    for (sy in 0..screenshot.height) sy@{
-                        val sColor = screenshot.getRGB(sx,sy)
-                        if ((color==sColor) and ((rx ==0 ) and (ry == 0))){
-                            rx = sx
-                            ry = sy
-                        }
-                    }
-                }
-            }
-        }
-        return Rectangle(rx,ry,rw,rh)
+        return searchRectInsideImage(screenshot,image)
     }
 
-    data class Rectangle(
-            val x:Int,
-            val y:Int,
-            val width:Int,
-            val height:Int
-    )
 }

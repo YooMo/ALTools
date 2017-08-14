@@ -21,6 +21,11 @@ repositories {
     mavenCentral()
 }
 
+configurations {
+    artifact
+}
+
+
 dependencies {
     compile fileTree(include: ['*.jar'], dir: 'libs')
     compile "org.jetbrains.kotlin:kotlin-stdlib-jre8:$kotlin_version"
@@ -49,6 +54,4 @@ jar {
     }
 }
 
-configurations {
-    artifact
-}
+

@@ -4,6 +4,6 @@ import org.junit.Test
 class ScreenshotTest {
     @Test
     fun test(){
-        Phone.screenshot(true)
+        Phone.screenshot(false)
     }
 }
