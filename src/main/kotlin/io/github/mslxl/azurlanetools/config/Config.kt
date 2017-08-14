@@ -14,7 +14,7 @@ object Config{
             createNewFile()
         }
     }
-    private val PHONE_DIR = File(Phone.exc("getprop ro.serialno")).apply {
+    public val PHONE_DIR = File(Phone.exc("getprop ro.serialno")).apply {
             if (!exists())
                 mkdirs()
     }
@@ -39,7 +39,7 @@ object Config{
             this.close()
         }
         FileOutputStream(file("settings.properties")).run {
-            properties.store(this,"AzurLane Tools config file")
+            phoneProperties.store(this,"AzurLane Tools config file")
             this.flush()
             this.close()
         }
@@ -53,5 +53,13 @@ object Config{
         set(value) = properties.put("adb_path",value).unit()
 
 
-    private fun file(path:String) = File(PHONE_DIR,path)
+    private fun file(path:String) = File(PHONE_DIR,path).apply {
+        if (!exists()) createNewFile()
+    }
+
+    init {
+        sun.misc.SharedSecrets.getJavaLangAccess().registerShutdownHook(3 /* Shutdown hook invocation order */, true /* register even if shutdown in progress */) {
+            store()
+        }
+    }
 }

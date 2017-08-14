@@ -15,7 +15,7 @@ import java.io.File;
 import java.io.IOException;
 
 public class FastScreencap extends JFrame implements MouseListener,ActionListener{
-    public static volatile BufferedImage screenshot = Phone.INSTANCE.screenshot(true);
+    public static volatile BufferedImage screenshot = Phone.INSTANCE.screenshot(true,true);
     private JPanel panel = new JPanel(){
 
 
@@ -61,12 +61,16 @@ public class FastScreencap extends JFrame implements MouseListener,ActionListene
         markEnd.addActionListener(this);
         reScreenshot.addActionListener(this);
         save.addActionListener(this);
-        addMouseListener(this);
+        panel.addMouseListener(this);
         setVisible(true);
 
     }
-    public static void main(String[] args) {
-
+    public static void main(String[] args){
+        try {
+            UIManager.setLookAndFeel(UIManager.getSystemLookAndFeelClassName());
+        } catch (ClassNotFoundException | InstantiationException | IllegalAccessException | UnsupportedLookAndFeelException e) {
+            e.printStackTrace();
+        }
         new FastScreencap();
     }
 
@@ -101,7 +105,7 @@ public class FastScreencap extends JFrame implements MouseListener,ActionListene
     public void actionPerformed(ActionEvent e) {
         Object src = e.getSource();
         if (src == reScreenshot){
-            screenshot = Phone.INSTANCE.screenshot(true);
+            screenshot = Phone.INSTANCE.screenshot(true,true);
 
         }else if (src == markStart){
             markSX = mouseX;
@@ -117,6 +121,9 @@ public class FastScreencap extends JFrame implements MouseListener,ActionListene
             chooser.showSaveDialog(panel);
             File file = chooser.getSelectedFile();
             if (file!=null){
+                if (!file.getName().endsWith(".png")){
+                    file = new File(file.getAbsolutePath()+".png");
+                }
                 try {
                     BufferedImage image = new BufferedImage(markEX-markSX,markEY-markSY,screenshot.getType());
                     for (int i = 0; i < image.getWidth(); i++) {
