@@ -23,6 +23,7 @@ object AzurLane {
     fun showMain(){
         println("Try to open main activity...")
         if (isMainUI(true)){
+            println("Already is main activity")
             return
         }
         if (isSystemAnnounceUI(newScreencap = false)){

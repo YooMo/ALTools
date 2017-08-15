@@ -5,5 +5,6 @@ class AzurLaneTest {
     @Test
     fun test(){
         AzurLane.showMain()
+
     }
 }

@@ -1,6 +1,4 @@
-import io.github.mslxl.azurlanetools.util.Phone
-import io.github.mslxl.azurlanetools.util.println
-import io.github.mslxl.azurlanetools.util.searchRectInsideImage
+import io.github.mslxl.azurlanetools.util.*
 import io.kotlintest.matchers.shouldNot
 import io.kotlintest.matchers.shouldNotBe
 import org.junit.Test
@@ -41,5 +39,19 @@ class ImageMatch{
 
         println("Image found! rect is x=${result.x} y=${result.y} w=${result.width} h=${result.height}")
         println("It cost ${System.currentTimeMillis() - stime}ms")
+    }
+
+    @Test
+    fun testR(){
+        val file = File("DU2TDM14B1007925")
+        file.listFiles().forEach {
+            if (it.name.endsWith(".png")){
+                var image = ImageIO.read(it)
+                loop(3){
+                    image = image.rotate()
+                }
+                ImageIO.write(image,"png",it)
+            }
+        }
     }
 }

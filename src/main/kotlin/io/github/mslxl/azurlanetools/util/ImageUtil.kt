@@ -31,10 +31,11 @@ fun searchRectInsideImage(screenshot: BufferedImage, image: BufferedImage): Rect
 }
 
 fun BufferedImage.rotate(): BufferedImage {
+    println("Rotate the image...")
     val image = BufferedImage(height, width, type)
-    for (tx in 0..width) {
-        for (th in 0..height) {
-            image.setRGB(th, tx, getRGB(tx, th))
+    for (tx in 0..width-1) {
+        for (th in 0..height-1) {
+            image.setRGB(height-th-1,tx, getRGB(tx, th))
         }
     }
     return image

@@ -57,7 +57,7 @@ object Phone {
         }
         var img = ImageIO.read(file)
         loop(Config.rotate_times){
-            img.rotate()
+            img = img.rotate()
         }
         screen = img
         return img
