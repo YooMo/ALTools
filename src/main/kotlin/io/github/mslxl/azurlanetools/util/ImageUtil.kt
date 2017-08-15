@@ -15,10 +15,21 @@ fun searchRectInsideImage(screenshot: BufferedImage, image: BufferedImage): Rect
                 var match = true
                 inside@ for (x in 0..image.width - 1) {
                     for (y in 0..image.height - 1) {
-                        if (image.getRGB(x, y) != screenshot.getRGB(sx + x, sy + y)) {
-                            match = false
-                            break@inside
+                        try {
+                            //TODO 此处有薛定谔的 bug
+                            //This place has a unkown bug and I can not find it.
+                            val sRgb = screenshot.getRGB(sx + x, sy + y)
+                            if (image.getRGB(x, y) != sRgb) {
+                                match = false
+                                break@inside
+                            }
+                        }catch (e:Exception){
+                            println("sx=$sx x=$x sy=$sy y=$y sw=${screenshot.width} sh=${screenshot.height} tw=${image.width} th=${image.height}")
+                            System.err.println("A exception was happened")
+                            return Rectangle(-1, -1, -1, -1)
                         }
+
+
                     }
                 }
                 if (match) {

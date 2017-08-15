@@ -39,9 +39,10 @@ object Phone {
     }
     private lateinit var screen:BufferedImage
     fun screenshot(new:Boolean = true,delOnExit:Boolean = true): BufferedImage {
-        if (!new){
+
+/*        if (!new){
             return screen
-        }
+        }*/
         println("Screenshot...")
         val id = System.currentTimeMillis()
         var file = File("screencap/$id.png")

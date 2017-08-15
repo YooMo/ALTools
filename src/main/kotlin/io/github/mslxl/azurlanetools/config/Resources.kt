@@ -1,5 +1,9 @@
 package io.github.mslxl.azurlanetools.config
 
+
+import com.google.gson.Gson
+import io.github.mslxl.azurlanetools.util.Rectangle
+import io.github.mslxl.azurlanetools.util.isFalse
 import java.awt.image.BufferedImage
 import java.io.File
 import javax.imageio.ImageIO
@@ -27,6 +31,14 @@ class Resources private constructor(val dir: File) {
             }
             return groupMap[groupName]!!
         }
+        fun getLocation(pathName: String):Rectangle{
+            File(Config.PHONE_DIR,pathName+".json").run {
+                exists().isFalse {
+                    error("$pathName was not found!")
+                }
+                return Gson().fromJson<Rectangle>(inputStream().bufferedReader().readText(),Rectangle::class.java)
+            }
+        }
     }
     operator fun get(pathName:String):BufferedImage{
         if (!map.containsKey(pathName)){
@@ -35,5 +47,13 @@ class Resources private constructor(val dir: File) {
             map[pathName] = ImageIO.read(file)
         }
         return map[pathName]!!
+    }
+    fun getLocation(pathName: String):Rectangle{
+        File(dir,pathName+".json").run {
+            exists().isFalse {
+                error("$pathName was not found!")
+            }
+            return Gson().fromJson<Rectangle>(inputStream().bufferedReader().readText(),Rectangle::class.java)
+        }
     }
 }

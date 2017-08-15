@@ -14,6 +14,7 @@ object AzurLaneTools {
 
     @JvmStatic
     fun main(args: Array<String>) {
+        initTasks()
         println("AzurLane Tools by mslxl")
         println("Init...")
 

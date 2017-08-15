@@ -41,17 +41,4 @@ class ImageMatch{
         println("It cost ${System.currentTimeMillis() - stime}ms")
     }
 
-    @Test
-    fun testR(){
-        val file = File("DU2TDM14B1007925")
-        file.listFiles().forEach {
-            if (it.name.endsWith(".png")){
-                var image = ImageIO.read(it)
-                loop(3){
-                    image = image.rotate()
-                }
-                ImageIO.write(image,"png",it)
-            }
-        }
-    }
 }
