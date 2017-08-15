@@ -2,6 +2,7 @@ package io.github.mslxl.azurlanetools
 
 import io.github.mslxl.azurlanetools.config.Config
 import io.github.mslxl.azurlanetools.operatioer.Run
+import io.github.mslxl.azurlanetools.util.isEquals
 import io.github.mslxl.azurlanetools.util.isFalse
 import io.github.mslxl.azurlanetools.util.isNull
 import io.github.mslxl.azurlanetools.util.tryDoUntilTrue
@@ -16,7 +17,7 @@ object AzurLaneTools {
         println("AzurLane Tools by mslxl")
         println("Init...")
 
-        Config.adb_path.isNull {
+        Config.adb_path.isEquals("") {
             tryDoUntilTrue {
                 times->
                 (times==1).isFalse {

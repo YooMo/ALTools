@@ -27,13 +27,25 @@ inline fun Boolean.isFalse(block:()->Unit): Boolean{
 
 inline fun Any?.isNull(block: () -> Unit):Any?{
     (this==null).isTrue(block)
-    return this;
+    return this
 }
 
 inline fun Any?.isNotNull(block: () -> Unit):Any{
     (this!=null).isTrue(block)
     return this!!
 }
+inline fun Any.isEquals(other:Any,block: () -> Unit):Any{
+    (this == other).isTrue(block)
+    return this
+}
+
+inline fun Any.isNotEquals(other:Any,block: () -> Unit):Any{
+    (this == other).isFalse(block)
+    return this
+}
+
+fun Any?.isNull() = this==null
+fun Any?.isNotNull() = this!=null
 
 inline fun tryDoUntilTrue(allowException:Boolean = false, block: (times:Int) -> Boolean){
     var times = 1

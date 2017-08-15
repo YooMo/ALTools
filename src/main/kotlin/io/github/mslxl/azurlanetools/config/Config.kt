@@ -6,7 +6,6 @@ import io.github.mslxl.azurlanetools.util.unit
 import java.io.File
 import java.io.FileInputStream
 import java.io.FileOutputStream
-import java.util.*
 
 object Config{
     private val FILE = File("config.properties").apply {
@@ -14,7 +13,7 @@ object Config{
             createNewFile()
         }
     }
-    public val PHONE_DIR = File(Phone.exc("getprop ro.serialno")).apply {
+    val PHONE_DIR = File(Phone.exc("getprop ro.serialno")).apply {
             if (!exists())
                 mkdirs()
     }
@@ -48,8 +47,8 @@ object Config{
         get() = phoneProperties.getProperty("rotate_time","0").toInt()
         set(value) = phoneProperties.put("rotate_time",value).unit()
 
-    var adb_path:String?
-        get() = properties.getProperty("adb_path",null)
+    var adb_path:String
+        get() = properties.getProperty("adb_path","")
         set(value) = properties.put("adb_path",value).unit()
 
 
