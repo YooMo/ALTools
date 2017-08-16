@@ -6,6 +6,7 @@ import org.junit.Test
 class AzurLaneTest {
     @Test
     fun test(){
+	//May can not pass
         AzurLane.goWeighAnchor()
     }
 }
